@@ -1,13 +1,21 @@
 <div class="gallery-conteiner" *ngIf="!galleryService.loading">
-    <ul class="gallery" *ngIf="galleryService.gallery.length; else noGallery">
-        <li class="galleryItem"
-            *ngFor="let item of galleryService.gallery | galleryFilter: galleryService.searchBreed; let i = index">
-            <img src={{item.url}} class="galleryItem__image" />
-            <span>{{item.name}}</span>
-            <span>{{item.reference_image_id}}</span>
-            
-        </li>
-    </ul>
+    <div class="content" role="main">
+        <div class="card">
+          <div class="form-group">
+            <label for="search-text">Buscar</label>
+            <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
+              [(ngModel)]="searchText"
+              autofocus>
+          </div>
+          <ul class="gallery" *ngIf="galleryService.gallery.length; else noGallery">
+            <li class="galleryItem"
+                *ngFor="let item of galleryService.gallery | appFilter: searchText">
+                <img src="https://cdn2.thecatapi.com/images/c1s.jpg" class="galleryItem__image" />
+                <span>{{item.name}}</span>            
+            </li>
+        </ul>
+        </div>
+      </div>
 </div>
 
 <ng-template #noGallery>

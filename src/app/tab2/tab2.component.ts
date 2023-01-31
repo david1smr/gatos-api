@@ -12,7 +12,20 @@ import { tap } from "rxjs/operators";
 
 
 export class Tab2Component {
+  
   constructor(public galleryService: GalleryService, private http: HttpClient) {}
+
+  searchText = '';
+  characters = [
+    'Ant-Man',
+    'Aquaman',
+    'Asterix',
+    'The Atom',
+    'The Avengers',
+    'Batgirl',
+    'Batman',
+    'Batwoman'
+  ]
 
   ngOnInit(): void {
     
@@ -23,18 +36,9 @@ export class Tab2Component {
   }
 
   search(): Observable<GalleryItem[]> {
+    this.galleryService.loading = true
     // const APIKEY = 'e644a991-0319-4b39-840f-08c4781bc4ad';
     return this.http.get<GalleryItem[]>('https://api.thecatapi.com/v1/breeds')
     .pipe(tap(gallery => this.galleryService.gallery = gallery));
-  }
-
-  galleryAppear(){
-      this.galleryService.gallery.length > 0 && !this.galleryService.loading && (Math.ceil(this.galleryService.total / 10) !== this.galleryService.page - 1) && (this.galleryService.page + 1)
-      if (this.galleryService.page > 1) {
-          window.scrollTo({
-              top: document.documentElement.scrollHeight,
-              behavior: "smooth",
-            });
-        }
   }
 }

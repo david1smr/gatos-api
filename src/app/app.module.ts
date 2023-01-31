@@ -12,6 +12,7 @@ import { Tab2Component } from './tab2/tab2.component';
 import { Tab3Component } from './tab3/tab3.component'; 
 import { GalleryFilterPipe } from './shared/gallery-filter.pipe';
 import  {MatProgressBarModule } from '@angular/material/progress-bar';
+import { FilterPipe } from './shared/filter.pipe';
  
 const routes: Routes = [
   { path: '', redirectTo: 'tab1', pathMatch: 'full' },
@@ -23,6 +24,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    FilterPipe,
     GalleryFilterPipe,
     Tab1Component,
     Tab2Component,
