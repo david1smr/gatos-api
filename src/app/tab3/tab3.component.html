@@ -1,2 +1,19 @@
 <!-- Contenido de la Tab 3 -->
-<p>Soy la pestaña 3</p>
+<button mat-button color="warn" (click)="deleteStorage()">Borrar todo</button>
+<div class="gallery-container">
+    <div class="content" role="main">
+        <div class="card">
+          <div class="gallery" *ngIf="petList.length">
+            <div class="galleryItem"
+                *ngFor="let item of petList">
+                <img  style="vertical-align:middle" src="https://cdn2.thecatapi.com/images/{{item.image}}.jpg" class="galleryItem__image" onerror="this.onerror=null; this.src='/assets/images/error.jpg'" alt=""/>
+                <span >{{item.name}}</span>   
+            </div>    
+          </div>
+        </div>
+      </div>
+</div>
+
+<ng-template *ngIf="!petList.length">
+    <p class="galleryMessage">Sin imágenes</p>
+</ng-template>

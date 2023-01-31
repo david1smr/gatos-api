@@ -11,11 +11,21 @@ export class AddPetModalComponent implements OnInit{
 
   constructor(public dialogRef: MatDialogRef<AddPetModalComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
   ngOnInit(): void {
-    debugger
-    console.log(this.data)
   }
   
   closeModal() {
+    this.dialogRef.close();
+  }
+
+  savePet(petName, petImage) {
+
+    let newPet = {name: petName, image: petImage}
+
+    var a = [];
+    a = JSON.parse(localStorage.getItem('petsList')) || [];
+    a.push(newPet);
+    localStorage.setItem('petsList', JSON.stringify(a));
+
     this.dialogRef.close();
   }
 }

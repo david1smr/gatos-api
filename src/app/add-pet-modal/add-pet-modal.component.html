@@ -13,9 +13,9 @@
             <div style="padding: 40px;">
             <mat-form-field class="example-full-width">
                 <mat-label>Nombre</mat-label>
-                <input matInput placeholder="" value="">
+                <input matInput placeholder="" value="" #petname>
             </mat-form-field>
-            <button mat-button style="float: right; margin-top: 10px" color="primary"(click)="closeModal()">Guardar</button>
+            <button mat-button style="float: right; margin-top: 10px" color="primary" (click)="savePet(petname.value, data.reference_image_id)">Guardar</button>
             </div>
         <div> 
     </div>
