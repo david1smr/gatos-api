@@ -15,7 +15,6 @@ export class Tab1Component {
   constructor(public galleryService: GalleryService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    
     this.reload()
   }
 
