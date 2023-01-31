@@ -3,6 +3,8 @@ import { GalleryService, GalleryItem, Breed } from "../shared/gallery.service";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { AddPetModalComponent } from '../add-pet-modal/add-pet-modal.component';
 
 @Component({
   selector: 'app-tab2',
@@ -12,27 +14,28 @@ import { tap } from "rxjs/operators";
 
 
 export class Tab2Component {
+
+  dialogConfig = new MatDialogConfig();
+  modalDialog: MatDialogRef<AddPetModalComponent, any> | undefined;
   
-  constructor(public galleryService: GalleryService, private http: HttpClient) {}
+  constructor(public galleryService: GalleryService, private http: HttpClient, public matDialog: MatDialog) {}
+
+  ngAfterViewInit(): void {
+    document.onclick = (args: any) : void => {
+          if(args.target.tagName === 'BODY') {
+              this.modalDialog?.close()
+          }
+      }
+    }
+
 
   searchText = '';
-  characters = [
-    'Ant-Man',
-    'Aquaman',
-    'Asterix',
-    'The Atom',
-    'The Avengers',
-    'Batgirl',
-    'Batman',
-    'Batwoman'
-  ]
 
   ngOnInit(): void {
     
     this.search().subscribe(() => {
       this.galleryService.loading = false
           });
-          this.galleryService.searchBreed = ''
   }
 
   search(): Observable<GalleryItem[]> {
@@ -40,5 +43,10 @@ export class Tab2Component {
     // const APIKEY = 'e644a991-0319-4b39-840f-08c4781bc4ad';
     return this.http.get<GalleryItem[]>('https://api.thecatapi.com/v1/breeds')
     .pipe(tap(gallery => this.galleryService.gallery = gallery));
+  }
+
+  openModal() {
+
+    this.modalDialog = this.matDialog.open(AddPetModalComponent, this.dialogConfig);
   }
 }

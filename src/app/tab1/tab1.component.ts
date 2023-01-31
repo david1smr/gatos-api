@@ -16,10 +16,7 @@ export class Tab1Component {
 
   ngOnInit(): void {
     
-    this.search().subscribe(() => {
-      this.galleryService.loading = false
-          });
-          this.galleryService.searchBreed = ''
+    this.reload()
   }
 
   search(): Observable<GalleryItem[]> {
@@ -27,6 +24,12 @@ export class Tab1Component {
     // const APIKEY = 'e644a991-0319-4b39-840f-08c4781bc4ad';
     return this.http.get<GalleryItem[]>('https://api.thecatapi.com/v1/images/search?limit=1&page=100&order=Desc')
     .pipe(tap(gallery => this.galleryService.gallery = gallery));
+  }
+
+  reload() {
+    this.search().subscribe(() => {
+      this.galleryService.loading = false
+          });
   }
 
 }

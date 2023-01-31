@@ -1,4 +1,4 @@
-<div class="gallery-conteiner" *ngIf="!galleryService.loading">
+<div class="gallery-container" *ngIf="!galleryService.loading">
     <div class="content" role="main">
         <div class="card">
           <div class="form-group">
@@ -10,8 +10,9 @@
           <ul class="gallery" *ngIf="galleryService.gallery.length; else noGallery">
             <li class="galleryItem"
                 *ngFor="let item of galleryService.gallery | appFilter: searchText">
-                <img src="https://cdn2.thecatapi.com/images/c1s.jpg" class="galleryItem__image" />
-                <span>{{item.name}}</span>            
+                <img src="https://cdn2.thecatapi.com/images/{{item.reference_image_id}}.jpg" class="galleryItem__image" onerror="this.onerror=null; this.src='/assets/images/error.jpg'" alt=""/>
+                <span>{{item.name}}</span>   
+                <button mat-raised-button (click)="openModal()">Añadir Mascota</button>         
             </li>
         </ul>
         </div>
