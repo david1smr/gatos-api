@@ -1,11 +1,12 @@
 <div class="gallery-container" *ngIf="!galleryService.loading">
     <div class="content" role="main">
         <div class="card">
-          <div class="form-group">
-            <label for="search-text">Buscar</label>
+          <div class="form-group" style="padding: 15px;">
             <input type="email" class="form-control" id="search-text" aria-describedby="search-text" 
               [(ngModel)]="searchText"
-              autofocus>
+              placeholder="Filtrar"
+              autofocus
+              style="padding: 10px; font-size: 2em">
           </div>
           <div class="gallery" *ngIf="galleryService.gallery.length; else noGallery">
             <div class="galleryItem"
