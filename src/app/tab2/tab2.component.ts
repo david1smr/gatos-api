@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { GalleryService, GalleryItem, Breed } from "../shared/gallery.service";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AddPetModalComponent } from '../add-pet-modal/add-pet-modal.component';
 
 @Component({
@@ -18,7 +18,8 @@ export class Tab2Component {
   dialogConfig = new MatDialogConfig();
   modalDialog: MatDialogRef<AddPetModalComponent, any> | undefined;
   
-  constructor(public galleryService: GalleryService, private http: HttpClient, public matDialog: MatDialog) {}
+  constructor(public galleryService: GalleryService, private http: HttpClient, public matDialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngAfterViewInit(): void {
     document.onclick = (args: any) : void => {
@@ -45,8 +46,14 @@ export class Tab2Component {
     .pipe(tap(gallery => this.galleryService.gallery = gallery));
   }
 
-  openModal() {
-
-    this.modalDialog = this.matDialog.open(AddPetModalComponent, this.dialogConfig);
+  openModal(item) {
+    this.modalDialog = this.matDialog.open(AddPetModalComponent, {
+      id: "add-pet-modal-component",
+      height: "450px",
+      width: "450px",
+      panelClass: "my-dialog",
+      data: item,
+      disableClose: true
+    });
   }
 }

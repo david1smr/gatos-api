@@ -1,4 +1,7 @@
 <div class="gallery-container" *ngIf="!galleryService.loading">
+    <div class="vertical-center">
+        <button mat-raised-button (click)="reload()">OTRO</button>    
+    </div>
     <div *ngIf="galleryService.gallery.length">
         <div class="galleryItem"
             *ngFor="let item of galleryService.gallery | galleryFilter: galleryService.searchBreed; let i = index">

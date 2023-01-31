@@ -16,7 +16,13 @@ import { FilterPipe } from './shared/filter.pipe';
 import { AddPetModalComponent } from './add-pet-modal/add-pet-modal.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
- 
+import {MatIconModule} from '@angular/material/icon';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
+const MaterialComponent = [MatDialogModule];
+
 const routes: Routes = [
   { path: '', redirectTo: 'tab1', pathMatch: 'full' },
   { path: 'tab1', component: Tab1Component },
@@ -40,13 +46,19 @@ const routes: Routes = [
     HttpClientModule,
     NoopAnimationsModule,
     FormsModule,
+    MatIconModule,
     MatTabsModule,
     MatProgressBarModule,
     MatButtonModule,
-    MatDialogModule,
+    MaterialComponent,
+    MatFormFieldModule,
+    MatInputModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [AddPetModalComponent]
 })

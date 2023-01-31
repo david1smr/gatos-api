@@ -7,14 +7,14 @@
               [(ngModel)]="searchText"
               autofocus>
           </div>
-          <ul class="gallery" *ngIf="galleryService.gallery.length; else noGallery">
-            <li class="galleryItem"
+          <div class="gallery" *ngIf="galleryService.gallery.length; else noGallery">
+            <div class="galleryItem"
                 *ngFor="let item of galleryService.gallery | appFilter: searchText">
-                <img src="https://cdn2.thecatapi.com/images/{{item.reference_image_id}}.jpg" class="galleryItem__image" onerror="this.onerror=null; this.src='/assets/images/error.jpg'" alt=""/>
-                <span>{{item.name}}</span>   
-                <button mat-raised-button (click)="openModal()">Añadir Mascota</button>         
-            </li>
-        </ul>
+                <img  style="vertical-align:middle" src="https://cdn2.thecatapi.com/images/{{item.reference_image_id}}.jpg" class="galleryItem__image" onerror="this.onerror=null; this.src='/assets/images/error.jpg'" alt=""/>
+                <span >{{item.name}}</span>   
+                <button class="button-add" id="add-pet-button" mat-raised-button (click)="openModal(item)">Añadir Mascota</button>     
+            </div>    
+          </div>
         </div>
       </div>
 </div>

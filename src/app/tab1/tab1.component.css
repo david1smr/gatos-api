@@ -1,4 +1,5 @@
 .galleryItem {
+  padding: 0px;
   line-height: 400px;
   text-align: center;
 }
@@ -6,4 +7,10 @@ img {
   max-width:400px;
   max-height:400px;
   vertical-align: middle;
+}
+button {
+  margin:0 auto;
+  display:block;
+  margin-top: 25px;
+  margin-bottom: -30x;
 }

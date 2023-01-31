@@ -1,19 +1,22 @@
 <div>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-        <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
-    </div>
+    <div mat-dialog-title class="dialog-title">
+        <h2>Añadir mascota</h2>
+        <button mat-icon-button aria-label="close dialog" mat-dialog-close>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
     <div class="modal-body">
-        <form>
-            <div class="mb-3">
-                <label for="dateOfBirth">Date of birth</label>
-                <div class="input-group">
-                    <button class="btn btn-outline-secondary bi bi-calendar3" (click)="closeModal()" type="button"></button>
-                </div>
+        <div *ngIf="data">
+            <div class="galleryItem">
+                <img src="https://cdn2.thecatapi.com/images/{{data.reference_image_id}}.jpg" class="galleryItem__image" onerror="this.onerror=null; this.src='/assets/images/error.jpg'" alt="" />
             </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Save</button>
+            <div style="padding: 40px;">
+            <mat-form-field class="example-full-width">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="" value="">
+            </mat-form-field>
+            <button mat-button style="float: right; margin-top: 10px" color="primary"(click)="closeModal()">Guardar</button>
+            </div>
+        <div> 
     </div>
 </div>
