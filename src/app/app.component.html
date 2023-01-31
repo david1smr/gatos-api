@@ -1,0 +1,26 @@
+<!-- <mat-progress-bar
+  *ngIf="loading" color="accent" mode="indeterminate">
+</mat-progress-bar> -->
+<mat-tab-group selectedIndex="0" (selectedTabChange)="changeTab($event)">  
+  <mat-tab>
+    <mat-tab label="Aleatorio">
+      <ng-template matTabContent>
+        <app-tab1></app-tab1>
+      </ng-template>
+    </mat-tab>
+  </mat-tab>
+  <mat-tab>
+    <mat-tab label="Razas">
+      <ng-template matTabContent>
+        <app-tab2></app-tab2>
+      </ng-template>
+    </mat-tab>
+  </mat-tab>  
+  <mat-tab>
+    <mat-tab label="Mascotas">
+      <ng-template matTabContent>
+        <app-tab3></app-tab3>
+      </ng-template>
+    </mat-tab>
+  </mat-tab>  
+</mat-tab-group>

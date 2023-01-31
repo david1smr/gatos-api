@@ -1,0 +1,13 @@
+<div class="gallery-conteiner" *ngIf="!galleryService.loading">
+    <ul class="gallery" *ngIf="galleryService.gallery.length; else noGallery">
+        <li class="galleryItem"
+            *ngFor="let item of galleryService.gallery | galleryFilter: galleryService.searchBreed; let i = index">
+            <img src={{item.url}} class="galleryItem__image" />
+        </li>
+    </ul>
+</div>
+
+<ng-template #noGallery>
+    <p class="galleryMessage">Sin imágenes</p>
+</ng-template>
+<p *ngIf="galleryService.loading">Cargando</p>
