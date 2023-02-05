@@ -13,7 +13,6 @@ export class Tab3Component implements OnInit{
 
   ngOnInit(): void {
     var storage = localStorage.getItem('petsList');
-    console.log("existing que llega", storage)
     this.petList = JSON.parse(localStorage.getItem('petsList')) || [];
   }
   

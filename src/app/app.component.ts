@@ -22,7 +22,6 @@ export class AppComponent {
   tabIndex = 0 ;
  
   changeTab(event: { index: number; }){
-    console.log(event.index)
     this.tabIndex = event.index;
   }
 
